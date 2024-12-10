@@ -7,14 +7,14 @@ import Home from './Component/Home/Home'
 import Footer from './Component/Footer/Footer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
       
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar>
       <Home></Home>
-      <Footer></Footer>
+      <Footer></Footer> */}
       
     </>
   )
