@@ -18,7 +18,7 @@ const Home = () => {
               Welcome to our It Based Education and Profession. We are here to help you.
             </p>
 
-            <div className="flex gap-3">
+            <div className="gap-3 grid grid-cols-3 md:grid-cols-5">
             <button className="btn btn-secondary">Home</button>
             <button className="btn btn-secondary">About Us</button>
             <button className="btn btn-secondary">Device</button>
