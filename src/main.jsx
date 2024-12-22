@@ -10,6 +10,7 @@ import ErrorPage from './Components/ErrorPage';
 import Home from './Components/Home';
 import SignUp from './Components/SignUp';
 import Login from './Components/Login';
+import AllDevice from './Components/Device/AllDevice';
 
 
 const router = createBrowserRouter([
@@ -22,7 +23,12 @@ const router = createBrowserRouter([
       {
         path:"/",
         element: <Home></Home>
+      },
+      {
+        path:"/alldevice",
+        element: <AllDevice></AllDevice>
       }
+
 
     ]
   },
