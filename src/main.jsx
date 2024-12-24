@@ -11,6 +11,7 @@ import Home from './Components/Home';
 import SignUp from './Components/SignUp';
 import Login from './Components/Login';
 import AllDevice from './Components/Device/AllDevice';
+import AboutUs from './Components/AboutUs';
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path:"/alldevice",
         element: <AllDevice></AllDevice>
+      },
+      {
+        path:"/aboutus",
+        element: <AboutUs></AboutUs>
       }
 
 

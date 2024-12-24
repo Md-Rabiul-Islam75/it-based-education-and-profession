@@ -1,5 +1,6 @@
 import React from "react";
 import home_bg_pic from "../assets/home-bg-pic.jpg"
+// import home_img from "../assets/AboutUsThree.jpeg"
 import { Link } from "react-router";
 
 const Home = () => {
@@ -21,7 +22,7 @@ const Home = () => {
 
             <div className="gap-3 grid grid-cols-3 md:grid-cols-5">
             <button className="btn btn-secondary">Home</button>
-            <button className="btn btn-secondary">About Us</button>
+            <Link to="/aboutus" className="btn btn-secondary">About Us</Link>
             <Link to="/alldevice" className="btn btn-secondary">Device</Link>
             <button className="btn btn-secondary">Academic</button>
             <button className="btn btn-secondary">Programming</button>
