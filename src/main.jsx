@@ -8,10 +8,10 @@ import {
 import Root from './Components/Root';
 import ErrorPage from './Components/ErrorPage';
 import Home from './Components/Home';
-import SignUp from './Components/SignUp';
-import Login from './Components/Login';
 import AllDevice from './Components/Device/AllDevice';
-import AboutUs from './Components/AboutUs';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import AboutUs from './pages/AboutUs';
 
 
 const router = createBrowserRouter([
@@ -32,21 +32,25 @@ const router = createBrowserRouter([
       {
         path:"/aboutus",
         element: <AboutUs></AboutUs>
+      },
+
+      {
+        path: "/signUp",
+        element: <SignUp></SignUp>
+      },
+
+      
+      {
+      path: "/login",
+      element: <Login></Login>
       }
 
 
     ]
   },
 
-  {
-    path: "/signUp",
-    element: <SignUp></SignUp>
-  },
+  
 
-  {
-    path: "/login",
-    element: <Login></Login>
-  }
 
   // {
   //   path: "/",

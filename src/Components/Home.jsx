@@ -1,5 +1,6 @@
 import React from "react";
 import home_bg_pic from "../assets/home-bg-pic.jpg"
+import home_bg_pic2 from "../assets/home-bg-pic-2.avif"
 // import home_img from "../assets/AboutUsThree.jpeg"
 import { Link } from "react-router";
 
@@ -9,7 +10,7 @@ const Home = () => {
       <div
         className="hero min-h-screen"
         style={{
-            backgroundImage: `url(${home_bg_pic})`,
+            backgroundImage: `url(${home_bg_pic2})`,
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
