@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import login_bg_pic from '../assets/login_bg.avif'
 
 const Login = () => {
 
@@ -8,7 +9,14 @@ const Login = () => {
     }
 
     return (
-        <div className="hero bg-base-200">
+        <div className="hero bg-base-200"
+        style={{
+                    backgroundImage: `url(${login_bg_pic})`,
+                    backgroundRepeat: "no-repeat",
+                    
+                   
+                }}
+        >
         <div className="hero-content flex-col lg:flex-row-reverse">
           
           <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
