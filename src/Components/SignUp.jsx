@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import login_bg_pic from "../assets/login_bg.avif";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Make sure to import the toastify styles
-import { registerUser } from "../services/RegisterUserApi";
+//import { toast, ToastContainer } from "react-toastify";
+//import "react-toastify/dist/ReactToastify.css"; // Make sure to import the toastify styles
+import { registerUser } from "../service/RegisterUserApi";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import login_bg_pic from "../assets/login_bg.avif";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+//import { toast, ToastContainer } from "react-toastify";
+//import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
