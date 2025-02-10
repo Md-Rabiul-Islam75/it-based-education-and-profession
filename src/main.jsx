@@ -7,11 +7,11 @@ import {
 } from "react-router-dom";
 import Root from './Components/Root';
 import ErrorPage from './Components/ErrorPage';
-import Home from './Components/Home';
-import AllDevice from './Components/Device/AllDevice';
-import SignUp from './pages/SignUp';
-import Login from './pages/Login';
-import AboutUs from './pages/AboutUs';
+import Home from './pages/Home';
+import AllDevice from './pages/AllDevice';
+import SignUp from './Components/SignUp';
+import Login from './Components/Login';
+import AboutUs from './pages/Aboutus';
 
 
 const router = createBrowserRouter([
