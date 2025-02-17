@@ -49,32 +49,32 @@ const AllDevice = () => {
                   <tr className="border-b text-xl">
                     <th className="border-r p-2">1</th>
                     <td className="border-r p-2">RAM</td>
-                    <td className="p-2">8 GB</td>
+                    <td className="p-2 font-bold">8 GB</td>
                   </tr>
                   {/* row 2 */}
                   <tr className="border-b text-xl">
                     <th className="border-r p-2">2</th>
                     <td className="border-r p-2">ROM</td>
-                    <td className="p-2">512 GB</td>
+                    <td className="p-2 font-bold">512 GB</td>
                   </tr>
                   {/* row 3 */}
                   <tr className="border-b text-xl">
                     <th className="border-r p-2">3</th>
                     <td className="border-r p-2">Generation</td>
-                    <td className="p-2">10th</td>
+                    <td className="p-2 font-bold">10th</td>
                   </tr>
                  {/* row 4 */}
                   <tr className="border-b text-xl">
                     <th className="border-r p-2">4</th>
                     <td className="border-r p-2">Battery Backup</td>
-                    <td className="p-2">Min 4h</td>
+                    <td className="p-2 font-bold">Min 4h</td>
                   </tr>
 
                   {/* row 4 */}
                   <tr className="border-b text-xl">
                     <th className="border-r p-2">5</th>
                     <td className="border-r p-2">Graphics Card(Op)</td>
-                    <td className="p-2">2GB</td>
+                    <td className="p-2 font-bold">2GB</td>
                   </tr>
 
                 </tbody>

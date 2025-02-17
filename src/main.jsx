@@ -12,6 +12,7 @@ import AllDevice from './pages/AllDevice';
 import SignUp from './Components/SignUp';
 import Login from './Components/Login';
 import AboutUs from './pages/Aboutus';
+import AcademicPage from './pages/AcademicPage';
 
 
 const router = createBrowserRouter([
@@ -27,7 +28,13 @@ const router = createBrowserRouter([
       },
       {
         path:"/alldevice",
-        element: <AllDevice></AllDevice>
+        element: <AllDevice></AllDevice>,
+        
+      },
+      {
+        path:"/academic",
+        element: <AcademicPage></AcademicPage>,
+        loader: () => fetch('https://jsonplaceholder.typicode.com/users')
       },
       {
         path:"/aboutus",

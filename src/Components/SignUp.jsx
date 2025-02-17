@@ -134,7 +134,7 @@ const SignUp = () => {
       </div>
 
       {/* ToastContainer should be placed here or at the root of your app */}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 };
