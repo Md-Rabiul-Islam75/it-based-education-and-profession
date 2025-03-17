@@ -13,6 +13,7 @@ import SignUp from './Components/SignUp';
 import Login from './Components/Login';
 import AboutUs from './pages/Aboutus';
 import AcademicPage from './pages/AcademicPage';
+import Course from './pages/Course/Course';
 
 
 const router = createBrowserRouter([
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
       {
         path:"/academic",
         element: <AcademicPage></AcademicPage>,
-        loader: () => fetch('https://jsonplaceholder.typicode.com/users')
+        loader: () => fetch('http://localhost:8080/api/academicsubject/getall')
       },
       {
         path:"/aboutus",
@@ -50,7 +51,13 @@ const router = createBrowserRouter([
       {
       path: "/login",
       element: <Login></Login>
+      },
+
+      {
+        path: "academic/course/:subjectName",
+        element: <Course />
       }
+      
 
 
     ]
