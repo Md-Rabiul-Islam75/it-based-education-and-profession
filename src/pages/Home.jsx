@@ -22,11 +22,11 @@ const Home = () => {
             </p>
 
             <div className="gap-3 grid grid-cols-3 md:grid-cols-5">
-            <button className="btn btn-secondary">Home</button>
-            <Link to="/aboutus" className="btn btn-secondary">About Us</Link>
-            <Link to="/alldevice" className="btn btn-secondary">Device</Link>
-            <Link to="/academic" className="btn btn-secondary">Academic</Link>
-            <Link to="/programming" className="btn btn-secondary">Programming</Link>
+            <button className="btn btn-primary p-2">Home</button>
+            <Link to="/aboutus" className="btn btn-primary p-2">About Us</Link>
+            <Link to="/alldevice" className="btn btn-primary p-2">Device</Link>
+            <Link to="/academic" className="btn btn-primary p-2">Academic</Link>
+            <Link to="/programming" className="btn btn-primary p-2">Programming</Link>
             </div>
             
             

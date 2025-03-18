@@ -51,9 +51,9 @@ const AcademicPage = () => {
   }, []);
 
   return (
-    <div className='mx-auto my-2'>
-      <h3 className='text-center my-2 p-1 text-2xl bg-green-500'>Grow your Academic Career</h3>
-      <h2 className='font-bold text-center text-xl'>Total courses count: {subjects.length}</h2>
+    <div className='w-11/12 mx-auto my-8'>
+      {/* <h3 className='text-center my-2 p-1 text-2xl bg-green-500'>Grow your Academic Career</h3>
+      <h2 className='font-bold text-center text-xl'>Total courses count: {subjects.length}</h2> */}
 
       <div className='grid gap-2 md:grid-cols-2 lg:grid-cols-4 space-x-2 space-y-2'>
         {subjects.map(course => (

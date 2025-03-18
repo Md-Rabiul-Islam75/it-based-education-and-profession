@@ -13,7 +13,7 @@ const Course = () => {
 
             <section className='grid md:grid-cols-12'>
 
-                <div className='left col-span-3 bg-green-500'>
+                <div className='left col-span-3 px-2'>
                        <CourseIndex subjectName={subjectName}></CourseIndex>
 
                 </div>

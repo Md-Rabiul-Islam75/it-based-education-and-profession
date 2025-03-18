@@ -28,12 +28,12 @@ const CourseIndex = ({subjectName}) => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Categories: {categories.length}</h1>
+      <h1 className="text-2xl font-bold mb-4">Overview: {categories.length}</h1>
       <div className="flex flex-col gap-3">
         {categories.map((category, index) => (
           <NavLink
             key={index} // Using the index as a unique key
-            className="btn bg-base-100 border-none"
+            className="btn hover:bg-blue-300 border-none"
           >
             {category} {/* Display the category name */}
           </NavLink>
