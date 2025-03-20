@@ -31,7 +31,10 @@ const CourseIndex = ({subjectName}) => {
       <h1 className="text-2xl font-bold mb-4">Overview: {categories.length}</h1>
       <div className="flex flex-col gap-3">
         {categories.map((category, index) => (
-          <NavLink
+          <NavLink 
+          subjectName={subjectName} 
+          topicName={category}
+           to={`/academic/course/${subjectName}/${category}`}
             key={index} // Using the index as a unique key
             className="btn hover:bg-blue-300 border-none"
           >

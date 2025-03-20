@@ -14,6 +14,7 @@ import Login from './Components/Login';
 import AboutUs from './pages/Aboutus';
 import AcademicPage from './pages/AcademicPage';
 import Course from './pages/Course/Course';
+import CourseDetails from './Components/Course/CourseDetails';
 
 
 const router = createBrowserRouter([
@@ -46,7 +47,6 @@ const router = createBrowserRouter([
         path: "/signUp",
         element: <SignUp></SignUp>
       },
-
       
       {
       path: "/login",
@@ -55,8 +55,17 @@ const router = createBrowserRouter([
 
       {
         path: "academic/course/:subjectName",
-        element: <Course />
-      }
+        element: <Course />,
+        children: [
+          {
+            path: "/academic/course/:subjectName/:TopicName",
+            element: <CourseDetails></CourseDetails>,
+            loader: ({params}) => fetch(`http://localhost:8080/api/course/coursedetail/getbyIndexName?SubjectName=${decodeURIComponent(params.subjectName)}&TopicName=${decodeURIComponent(params.TopicName)}`)
+          }
+        ]
+      },
+
+      
       
 
 
