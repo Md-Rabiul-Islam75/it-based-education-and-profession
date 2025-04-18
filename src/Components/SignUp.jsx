@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import login_bg_pic from "../assets/login_bg.avif";
 //import { toast, ToastContainer } from "react-toastify";
 //import "react-toastify/dist/ReactToastify.css"; // Make sure to import the toastify styles
 import { registerUser } from "../service/RegisterUserApi";
+import { AuthContext } from "../providers/AuthProvider";
 const SignUp = () => {
+
+ const {createUser} = useContext(AuthContext);
+
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -21,10 +25,10 @@ const SignUp = () => {
     });
   };
 
-  const handleSignUP = async (e) => {
+  const handleSignUP =  (e) => {
     e.preventDefault();
 
-    try {
+    //try {
       // const response = await fetch("http://localhost:8080/api/user/register", {
       //   method: "POST",
       //   headers: {
@@ -37,18 +41,31 @@ const SignUp = () => {
       //   }),
       // });
 
-      const result = await registerUser(formData.name,formData.email, formData.password);
+      // signUp firebase process
+      const email = e.target.email.value;
+      const password = e.target.password.value;
 
-      const data = await response.json();
-      if (response.ok) {
-        toast.success(data.message || "Registration successful!");
-      } else {
-        toast.error(`Error: ${data.message || "Something went wrong"}`);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error("An error occurred while registering.");
-    }
+      createUser(email, password)
+      .then(result => {
+        console.log(result.user)
+        alert('SignUp Succesffull.')
+      })
+      .catch(error => {
+        console.log('error', error)
+      })
+
+    //   const result = await registerUser(formData.name,formData.email, formData.password);
+
+    //   const data = await response.json();
+    //   if (response.ok) {
+    //     toast.success(data.message || "Registration successful!");
+    //   } else {
+    //     toast.error(`Error: ${data.message || "Something went wrong"}`);
+    //   }
+    // } catch (error) {
+    //   console.error("Error:", error);
+    //   toast.error("An error occurred while registering.");
+    // }
   };
 
   return (
@@ -61,7 +78,7 @@ const SignUp = () => {
     >
       <div className="max-w-3xl mx-auto">
         <div className="card bg-base-100 w-full mx-auto text-center mt-1 max-w-sm shrink-0 shadow-2xl">
-          <form onSubmit={handleSignUP} className="card-body my-2">
+          <form onSubmit={handleSignUP} className="card-body py-2 my-2">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
