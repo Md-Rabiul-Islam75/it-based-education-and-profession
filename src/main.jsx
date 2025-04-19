@@ -17,6 +17,8 @@ import AcademicPage from "./pages/AcademicPage";
 import Course from "./pages/Course/Course";
 import CourseDetails from "./Components/Course/CourseDetails";
 import AuthProvider from "./providers/AuthProvider";
+import EntireAcademicTopicListPage from "./pages/EntireAcademicTopicListPage";
+import CtQuestionsPage from "./pages/CtQuestionsPage/CtQuestionsPage";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,17 @@ const router = createBrowserRouter([
         path: "/alldevice",
         element: <AllDevice></AllDevice>,
       },
+
+      {
+        path:"/entireAcademic",
+        element: <EntireAcademicTopicListPage></EntireAcademicTopicListPage>
+      },
+
+      {
+        path: "/ctQuestionPage",
+        element: <CtQuestionsPage></CtQuestionsPage>
+      },
+    
       {
         path: "/academic",
         element: <AcademicPage></AcademicPage>,

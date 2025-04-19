@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import login_bg_pic from "../assets/login_bg.avif";
+import { AuthContext } from "../providers/AuthProvider";
 //import { toast, ToastContainer } from "react-toastify";
 //import "react-toastify/dist/ReactToastify.css";
 
@@ -19,11 +20,26 @@ const Login = () => {
     });
   };
 
+
+  const {signInUser} = useContext(AuthContext);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     // Test toast to verify if it works
     // toast.success("Test toast message!");
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    
+    signInUser(email, password)
+    .then(result => {
+      console.log(result.user);
+      alert('Logged in Successfull.');
+    })
+    .catch(error => {
+      console.log(error);
+    })
 
     try {
       const response = await fetch("http://localhost:8080/api/user/login", {
