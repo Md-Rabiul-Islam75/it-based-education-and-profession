@@ -23,7 +23,7 @@ const EntireAcademicTopicListPage = () => {
           <h2 className="card-title">Ct Questions</h2>
          
           <div className="card-actions">
-            <Link to={"/ctQuestionPage"} className="btn btn-primary">See Now</Link>
+            <Link to={"/allCtQuestionPage"} className="btn btn-primary">See Now</Link>
           </div>
         </div>
       </div>

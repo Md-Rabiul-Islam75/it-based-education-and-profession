@@ -18,7 +18,8 @@ import Course from "./pages/Course/Course";
 import CourseDetails from "./Components/Course/CourseDetails";
 import AuthProvider from "./providers/AuthProvider";
 import EntireAcademicTopicListPage from "./pages/EntireAcademicTopicListPage";
-import CtQuestionsPage from "./pages/CtQuestionsPage/CtQuestionsPage";
+import AllSubjectCtQuestionsPage from "./pages/CtPage/AllSubjectCtQuestionsPage";
+import CtQuestionsPage from "./pages/CtPage/CtQuestionsPage";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,13 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/ctQuestionPage",
+        path: "/allCtQuestionPage",
+        element: <AllSubjectCtQuestionsPage></AllSubjectCtQuestionsPage>,
+        loader: () => fetch("http://localhost:8080/api/ctSubject/getall")
+      },
+
+      {
+        path: "/ctPage",
         element: <CtQuestionsPage></CtQuestionsPage>
       },
     
