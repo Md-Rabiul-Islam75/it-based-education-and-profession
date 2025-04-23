@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { data, useLocation } from "react-router";
+import { data, useLocation, useNavigate } from "react-router";
 
 const CtQuestionsPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const subjectName = location.state?.subjectName || "Unknown Subject";
 
   const [teacher, setTeacher] = useState("");
@@ -25,7 +26,7 @@ const CtQuestionsPage = () => {
     formData.append("year", year);
     formData.append("subjectName", subjectName);
 
-    const formData2 = {file, teacher, semester, year, subjectName}
+    const formData2 = { file, teacher, semester, year, subjectName };
 
     // try {
     //   const response = await fetch("http://localhost:8080/api/ctquetion/post", {
@@ -45,15 +46,18 @@ const CtQuestionsPage = () => {
     //   alert("Failed to upload CT question.");
     // }
 
-    fetch('http://localhost:8080/api/ctquetion/post',{
-        method: 'POST',
-        body: formData,
+    fetch("http://localhost:8080/api/ctquetion/post", {
+      method: "POST",
+      body: formData,
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log('ct created to db', data);
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("ct created to db", data);
         alert("CT question uploaded successfully!");
-    });
+        navigate("/ctContainerPage", {
+          state: { subjectName: subjectName },
+        });
+      });
   };
 
   return (
@@ -93,10 +97,10 @@ const CtQuestionsPage = () => {
             <option disabled value="">
               Choose Year
             </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <option value="3">3rd</option>
+            <option value="4">4th</option>
           </select>
         </div>
 
@@ -111,8 +115,8 @@ const CtQuestionsPage = () => {
             <option disabled value="">
               Choose Semester
             </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
           </select>
         </div>
 

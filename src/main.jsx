@@ -20,6 +20,7 @@ import AuthProvider from "./providers/AuthProvider";
 import EntireAcademicTopicListPage from "./pages/EntireAcademicTopicListPage";
 import AllSubjectCtQuestionsPage from "./pages/CtPage/AllSubjectCtQuestionsPage";
 import CtQuestionsPage from "./pages/CtPage/CtQuestionsPage";
+import CtContainerPage from "./pages/CtPage/CtContainerPage";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,12 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/ctPage",
+          path: "/ctContainerPage",
+          element: <CtContainerPage></CtContainerPage>
+      },
+
+      {
+        path: "/ctFormPage",
         element: <CtQuestionsPage></CtQuestionsPage>
       },
     
