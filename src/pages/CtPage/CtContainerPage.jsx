@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
+import toast from 'react-hot-toast';
 
 const CtContainerPage = () => {
   const location = useLocation();
@@ -33,7 +34,7 @@ const CtContainerPage = () => {
               <img
                 src={ct.ctquestionFileUrl}
                 alt="CtQuestions"
-                className="h-[150px]"
+                className="h-[150px] pt-2"
               />
             </figure>
             <div className="card-body">
@@ -47,12 +48,39 @@ const CtContainerPage = () => {
                 <h2 className="font-bold">Semester: {ct.semester}</h2>
               </div>
               <h3 className="font-bold">Creation Date: {ct.creationDate}</h3>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Click to See</button>
+              <div className="card-actions justify-end space-x-2">
+                {/* View Button */}
+                <a
+                  href={ct.ctquestionFileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  View
+                </a>
+
+                {/* Download Button */}
+                <a
+                  href={ct.ctquestionFileUrl}
+                   target="_blank"
+                  download={`CT_${subjectName}_${ct.year}_${ct.semester}.png`}
+                  onClick={() => alert("Your file is being downloaded...")}
+                  className="btn btn-secondary"
+                >
+                  Download
+                </a>
+                {/* <a
+                  href={ct.ctquestionFileUrl}
+                   target="_blank"
+                  download
+                  onClick={() => toast.success("Download started!")}
+                  className="btn btn-secondary"
+                >
+                  Download
+                </a> */}
               </div>
             </div>
           </div>
-
         ))}
       </div>
 

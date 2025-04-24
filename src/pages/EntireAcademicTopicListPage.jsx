@@ -47,7 +47,7 @@ const EntireAcademicTopicListPage = () => {
           <h2 className="card-title">Lab Manual</h2>
          
           <div className="card-actions">
-            <Link className="btn btn-primary">See Now</Link>
+            <Link to={"/allLabSubject"} className="btn btn-primary">See Now</Link>
           </div>
         </div>
       </div>

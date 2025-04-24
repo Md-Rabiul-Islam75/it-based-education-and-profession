@@ -21,6 +21,7 @@ import EntireAcademicTopicListPage from "./pages/EntireAcademicTopicListPage";
 import AllSubjectCtQuestionsPage from "./pages/CtPage/AllSubjectCtQuestionsPage";
 import CtQuestionsPage from "./pages/CtPage/CtQuestionsPage";
 import CtContainerPage from "./pages/CtPage/CtContainerPage";
+import AllLabSubject from "./pages/LabManualPage/AllLabSubject";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,12 @@ const router = createBrowserRouter([
       {
         path: "/ctFormPage",
         element: <CtQuestionsPage></CtQuestionsPage>
+      },
+
+      {
+        path: "/allLabSubject",
+        element: <AllLabSubject></AllLabSubject>,
+        loader: () => fetch("http://localhost:8080/api/lab/labsubject/getall")
       },
     
       {
