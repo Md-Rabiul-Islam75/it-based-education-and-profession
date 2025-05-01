@@ -22,6 +22,8 @@ import AllSubjectCtQuestionsPage from "./pages/CtPage/AllSubjectCtQuestionsPage"
 import CtQuestionsPage from "./pages/CtPage/CtQuestionsPage";
 import CtContainerPage from "./pages/CtPage/CtContainerPage";
 import AllLabSubject from "./pages/LabManualPage/AllLabSubject";
+import LabManualDayContainer from "./pages/LabManualPage/LabManualDayContainer";
+import LabTask from "./pages/LabManualPage/LabTask";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,16 @@ const router = createBrowserRouter([
         path: "/allLabSubject",
         element: <AllLabSubject></AllLabSubject>,
         loader: () => fetch("http://localhost:8080/api/lab/labsubject/getall")
+      },
+
+      {
+         path: "/labManualDay",
+         element: <LabManualDayContainer></LabManualDayContainer>
+      },
+
+      {
+        path: "/labOfToday",
+        element: <LabTask></LabTask>
       },
     
       {

@@ -64,7 +64,7 @@ const AllLabSubject = () => {
               <div className="card-body">
                 <h2 className="card-title">{sub.subjectName}</h2>
                 <div className="justify-end card-actions">
-                  <Link to={'/labManualContainerPage'} state={{ subjectName: sub.subjectName }}><button className="btn btn-primary">Enter</button></Link>
+                  <Link to={'/labManualDay'} state={{ subjectName: sub.subjectName }}><button className="btn btn-primary">Enter</button></Link>
                 </div>
               </div>
             </div>

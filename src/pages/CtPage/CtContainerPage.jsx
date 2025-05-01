@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 const CtContainerPage = () => {
   const location = useLocation();
@@ -28,14 +28,27 @@ const CtContainerPage = () => {
       <h2>Total ctcollection here: {ctCollection.length}</h2>
 
       <div className="grid grid-cols-1 my-2 mx-2  md:grid-cols-2 gap-2 lg:grid-cols-4 space-x-2">
-        {ctCollection.map((ct) => (
-          <div className="card border border-green-500 bg-base-100 w-[350px] mx-auto shadow-2xl">
-            <figure>
-              <img
-                src={ct.ctquestionFileUrl}
-                alt="CtQuestions"
-                className="h-[150px] pt-2"
-              />
+        {ctCollection.map((ct, index) => (
+          <div
+            key={ct.id || index}
+            className="card border border-green-500 bg-base-100 w-[350px] mx-auto shadow-2xl"
+          >
+            <figure className="p-4">
+              {ct.ctquestionFileUrl.endsWith(".pdf") ? (
+                // Show PDF preview in an iframe
+                <iframe
+                  src={ct.ctquestionFileUrl}
+                  title="CT PDF"
+                  className="w-full h-48 border rounded"
+                />
+              ) : (
+                // Show image preview
+                <img
+                  src={ct.ctquestionFileUrl}
+                  alt="CT Question"
+                  className="h-[150px] object-contain"
+                />
+              )}
             </figure>
             <div className="card-body">
               <h2 className="card-title">{subjectName}</h2>
@@ -49,26 +62,52 @@ const CtContainerPage = () => {
               </div>
               <h3 className="font-bold">Creation Date: {ct.creationDate}</h3>
               <div className="card-actions justify-end space-x-2">
-                {/* View Button */}
-                <a
-                  href={ct.ctquestionFileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                >
-                  View
-                </a>
+                {ct.ctquestionFileUrl.endsWith(".pdf") ? (
+                  <>
+                    {/* PDF View */}
+                    <a
+                      href={`https://docs.google.com/gview?url=${encodeURIComponent(
+                        ct.ctquestionFileUrl
+                      )}&embedded=true`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                    >
+                      View
+                    </a>
+                    {/* PDF Download */}
+                    <a
+                      href={ct.ctquestionFileUrl}
+                      download={`CT_${subjectName}_${ct.year}_${ct.semester}.pdf`}
+                      onClick={() => alert("Your file is being downloaded...")}
+                      className="btn btn-secondary"
+                    >
+                      Download
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    {/* Image View (direct link in new tab) */}
+                    <a
+                      href={ct.ctquestionFileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                    >
+                      View
+                    </a>
+                    {/* Image Download */}
+                    <a
+                      href={ct.ctquestionFileUrl}
+                      download={`CT_${subjectName}_${ct.year}_${ct.semester}.jpg`}
+                      onClick={() => alert("Your file is being downloaded...")}
+                      className="btn btn-secondary"
+                    >
+                      Download
+                    </a>
+                  </>
+                )}
 
-                {/* Download Button */}
-                <a
-                  href={ct.ctquestionFileUrl}
-                   target="_blank"
-                  download={`CT_${subjectName}_${ct.year}_${ct.semester}.png`}
-                  onClick={() => alert("Your file is being downloaded...")}
-                  className="btn btn-secondary"
-                >
-                  Download
-                </a>
                 {/* <a
                   href={ct.ctquestionFileUrl}
                    target="_blank"
