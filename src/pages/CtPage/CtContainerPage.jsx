@@ -99,6 +99,7 @@ const CtContainerPage = () => {
                     {/* Image Download */}
                     <a
                       href={ct.ctquestionFileUrl}
+                      target="_blank"
                       download={`CT_${subjectName}_${ct.year}_${ct.semester}.jpg`}
                       onClick={() => alert("Your file is being downloaded...")}
                       className="btn btn-secondary"

@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content"; // ✅ You missed this import
 
-const MySwal = withReactContent(Swal); // ✅ You missed creating MySwal
+//const MySwal = withReactContent(Swal); // ✅ You missed creating MySwal
 
 const LabTask = () => {
   const location = useLocation();
@@ -14,7 +14,7 @@ const LabTask = () => {
 
   // ✅ Define the modal function correctly
   const openInputModal = async () => {
-    const { value: formValues } = await MySwal.fire({
+    const { value: formValues } = await Swal.fire({
       title: "Submit Lab Task",
       html: `
         <input id="swal-input1" class="swal2-input" placeholder="Enter Topic Name">
@@ -51,6 +51,7 @@ const LabTask = () => {
         };
       },
     });
+
     if (formValues) {
       const formData = new FormData();
       formData.append("SubjectName", labName); // ✅ Matches your backend
@@ -73,6 +74,15 @@ const LabTask = () => {
         console.log("Response:", result);
 
         if (result.success) {
+          const newItem = {
+            id: Date.now(), // Temporary unique ID
+            indexName: formValues.indexName,
+            labTakenBy: formValues.labTakenBy,
+            labFileUrl: result.responseData?.labFileUrl || "", // Adjust based on backend
+          };
+
+          setLabCollection((prev) => [...prev, newItem]);
+
           alert("Lab manual uploaded successfully!");
         } else {
           alert("Upload failed: " + JSON.stringify(result.errorMessages));
@@ -84,7 +94,6 @@ const LabTask = () => {
     }
   };
 
-  //Uncomment this useEffect when needed
   useEffect(() => {
     if (labName && dayId) {
       fetch(
@@ -103,9 +112,43 @@ const LabTask = () => {
     }
   }, [labName, dayId]);
 
+  const handleFile = (url) => {
+    const isPdf = url.includes("upload/raw");
+  
+    if (isPdf) {
+      return (
+        <button className="btn btn-accent">
+          <a
+            href={`https://docs.google.com/gview?url=${encodeURIComponent(
+              url
+            )}&embedded=true`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            View PDF
+          </a>
+        </button>
+      );
+    } else {
+      return (
+        <button className="btn btn-accent">
+          <a
+            href={url}
+            target="_blank"
+            download={`Lab_${labName}_${dayId}`}
+            className="btn btn-ghost"
+          >
+            Download File
+          </a>
+        </button>
+      );
+    }
+  };
+  
   return (
     <div className="text-center p-4">
-      <h2 className="text-2xl font-bold mb-4">Today’s Lab Task</h2>
+      <h2 className="text-2xl font-bold mb-4">Today’s Lab Task Upload</h2>
 
       <p className="mt-2">
         Lab Name: <span className="font-semibold">{labName || "N/A"}</span>
@@ -129,35 +172,10 @@ const LabTask = () => {
                   <p>Lab Conducted by: {item.labTakenBy}</p>
 
                   <div className="card-actions justify-end mt-4">
-                    {item.labFileUrl && item.labFileUrl.endsWith(".pdf") ? (
-                      <>
-                        {/* PDF View */}
-                        <a
-                          href={`https://docs.google.com/gview?url=${encodeURIComponent(
-                            item.labFileUrl
-                          )}&embedded=true`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-primary"
-                        >
-                          View
-                        </a>
-
-                        {/* PDF Download */}
-                        <a
-                          href={item.labFileUrl}
-                          target="_blank"
-                          download={`Lab_${labName}_${dayId}_${index + 1}.pdf`}
-                          onClick={() =>
-                            alert("Your file is being downloaded...")
-                          }
-                          className="btn btn-ghost"
-                        >
-                          Download
-                        </a>
-                      </>
+                    {item.labFileUrl ? (
+                      handleFile(item.labFileUrl)
                     ) : (
-                      <p className="text-red-300">No PDF available</p>
+                      <p className="text-red-300">No file available</p>
                     )}
                   </div>
                 </div>
