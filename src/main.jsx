@@ -24,6 +24,7 @@ import CtContainerPage from "./pages/CtPage/CtContainerPage";
 import AllLabSubject from "./pages/LabManualPage/AllLabSubject";
 import LabManualDayContainer from "./pages/LabManualPage/LabManualDayContainer";
 import LabTask from "./pages/LabManualPage/LabTask";
+import ProgrammingStartingPage from "./pages/Programming/ProgrammingStartingPage";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
       {
         path:"/entireAcademic",
         element: <EntireAcademicTopicListPage></EntireAcademicTopicListPage>
+      },
+
+      {
+        path:"/programming",
+        element: <ProgrammingStartingPage></ProgrammingStartingPage>
       },
 
       {
