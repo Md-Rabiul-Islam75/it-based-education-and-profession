@@ -11,8 +11,8 @@ const LabManualDayContainer = () => {
   const cards = Array.from({ length: 12 }, (_, index) => ({
     id: index + 1,
     title: `Day ${index + 1}`,
-    description: `Course Title: ${labName}`,
-    image: `${lab_pic}`,
+    description: `${labName}`,
+    // image: `${lab_pic}`,
   }));
 
   //   const handleLabTask = (id) => {
@@ -32,14 +32,14 @@ const LabManualDayContainer = () => {
   //   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+    <div className="grid grid-cols-1 bg-white md:grid-cols-4 lg:grid-cols-6 gap-4 p-4">
       {cards.map((card) => (
-        <div key={card.id} className="card bg-base-100 shadow-sm border">
-          <figure className="px-10 pt-10">
+        <div key={card.id} className="card py-4 space-x-2 shadow-2xl border">
+          {/* <figure className="px-10 pt-10">
             <img src={card.image} alt="Card" className="rounded-xl" />
-          </figure>
+          </figure> */}
           <div className="card-body items-center text-center">
-            <h2 className="card-title">{card.title}</h2>
+            <h2 className="card-title text-4xl mb-8">{card.title}</h2>
             <p className="font-bold">{card.description}</p>
             <div className="card-actions">
               <Link

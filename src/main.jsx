@@ -25,6 +25,7 @@ import AllLabSubject from "./pages/LabManualPage/AllLabSubject";
 import LabManualDayContainer from "./pages/LabManualPage/LabManualDayContainer";
 import LabTask from "./pages/LabManualPage/LabTask";
 import ProgrammingStartingPage from "./pages/Programming/ProgrammingStartingPage";
+import Chatbot2 from "./Components/ChatBot/Chatbot2";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,11 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+
+      {
+          path: "/chatBot",
+          element: <Chatbot2></Chatbot2>
       },
 
       {

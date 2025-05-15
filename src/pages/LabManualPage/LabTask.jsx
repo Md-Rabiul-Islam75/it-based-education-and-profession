@@ -21,7 +21,7 @@ const LabTask = () => {
   // Modal to upload lab task
   const openInputModal = async () => {
     const { value: formValues } = await Swal.fire({
-      title: "Submit Lab Task",
+      title: "Submit Lab Manual",
       html: `
         <input id="swal-input1" class="swal2-input" placeholder="Enter Topic Name">
         <input id="swal-input2" type="file" class="swal2-file">
