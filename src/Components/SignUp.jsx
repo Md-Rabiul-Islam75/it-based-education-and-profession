@@ -68,7 +68,7 @@ const SignUp = () => {
   }; 
 
   return (
-    <div className="hero w-11/12 mx-auto bg-base-200 min-h-screen">
+    <div className="hero w-9/12 mx-auto bg-purple-200 m-5 h-[580px]">
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center w-1/2 lg:text-left">
           <h1 className="text-5xl font-bold">Sign Up now!</h1>
@@ -90,7 +90,7 @@ const SignUp = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="name"
-                    className="input input-bordered"
+                    className="input input-bordered w-[350px]"
                     required
                   />
                 </div>
@@ -105,7 +105,7 @@ const SignUp = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="email"
-                    className="input input-bordered"
+                    className="input input-bordered w-[350px]"
                     required
                   />
                 </div>
@@ -119,7 +119,7 @@ const SignUp = () => {
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="password"
-                    className="input input-bordered"
+                    className="input input-bordered w-[350px]"
                     required
                   />
 
@@ -133,24 +133,24 @@ const SignUp = () => {
                 </div>
 
                 <div className="form-control mt-6">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn bg-blue-800 text-white">
                     SignUp
                   </button>
                 </div>
               </form>
 
-              <p className="font-semibold text-xl px-2 py-1">
+              <p className="px-2 py-1">
                 Already have an account? Please{" "}
-                <u>
+                <u className="font-bold">
                   <Link to="/login">Login</Link>
                 </u>
               </p>
-              <p className="text-xl px-2 py-1">
+              {/* <p className="px-2 py-1">
                 Go to{" "}
                 <u className="font-bold">
                   <Link to="/">Home</Link>
                 </u>
-              </p>
+              </p> */}
             </div>
           </div>
 

@@ -110,9 +110,9 @@ const Login = () => {
 
   return (
 
-    <div className="hero bg-base-200 min-h-screen">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <div className="text-center lg:text-left">
+    <div className="hero w-9/12 mx-auto bg-purple-200 m-10 h-[581px]">
+  <div className="hero-content  flex-col lg:flex-row">
+    <div className="text-center w-1/2 mx-auto lg:text-left">
       <h1 className="text-5xl font-bold">Login now!</h1>
       <p className="py-6">
         Login and build your career like the professional. We are here to support you and always be with you. Keep faith in yourself. All the best. 
@@ -157,12 +157,12 @@ const Login = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn bg-blue-800 text-white">Login</button>
             </div>
           </form>
 
           <div className="text-center">
-            <button onClick={handleSignInWithGoogle} className="btn btn-accent">
+            <button onClick={handleSignInWithGoogle} className="btn">
               Sign In with <FaGoogle />
             </button>
             <p>
