@@ -13,14 +13,7 @@ const AllDevice = () => {
           <div>
             <h1 className="text-5xl font-bold">Laptop VS Desktop</h1>
             <p className="py-6 text-xl">
-              We are a passionate team committed to bridging the gap between
-              academia and the professional world for Computer Science and
-              Engineering (CSE) students. Our platform offers personalized
-              resources, expert guidance, and interactive tools to help students
-              navigate their academic journey, enhance their technical skills,
-              and prepare for successful careers in technology. By combining
-              insights from industry professionals and senior students, we aim
-              to create a trusted space for learning and growth.
+              Laptops are better for CSE students because they’re easy to carry to classes and labs. They help students stay connected with teachers and classmates for projects and discussions. Unlike desktops, laptops let students work anywhere, which suits their busy schedules. They’re perfect for coding and learning on the go.
             </p>
           </div>
 
@@ -90,12 +83,7 @@ const AllDevice = () => {
           <div>
             <h1 className="text-5xl font-bold">Overcome Money Problem</h1>
             <p className="py-6 text-xl">
-              To be recognized globally as the leading platform for CSE
-              students, setting a benchmark for innovation and practicality in
-              academic and career preparation. Our vision is to create a
-              community-driven ecosystem where students, professionals, and
-              educators collaborate to inspire growth, share knowledge, and
-              drive technological excellence.
+              Students with low-budget laptops can add an SSD to make their device faster for CSE work. Upgrading RAM or tweaking software settings can also help without needing a new laptop. These cheap fixes let students keep up with lab tasks even if they can’t afford a new one. It’s a smart way to solve money problems and stay ready for coding and projects.
             </p>
           </div>
 
