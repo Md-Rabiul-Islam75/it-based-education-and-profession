@@ -26,6 +26,8 @@ import LabManualDayContainer from "./pages/LabManualPage/LabManualDayContainer";
 import LabTask from "./pages/LabManualPage/LabTask";
 import ProgrammingStartingPage from "./pages/Programming/ProgrammingStartingPage";
 import Chatbot2 from "./Components/ChatBot/Chatbot2";
+import MockInterview from "./pages/Professional/MockInterview";
+import StartInterviewForm from "./pages/Professional/StartInterviewForm";
 
 const router = createBrowserRouter([
   {
@@ -48,8 +50,18 @@ const router = createBrowserRouter([
       },
 
       {
-        path:"/programming",
+        path:"/professional",
         element: <ProgrammingStartingPage></ProgrammingStartingPage>
+      },
+
+      {
+        path: "/mockInterviewForm",
+        element: <StartInterviewForm></StartInterviewForm>
+      },
+
+      {
+        path: "/mockInterview",
+        element: <MockInterview></MockInterview>
       },
 
       {

@@ -26,7 +26,7 @@ const Home = () => {
             <Link to="/aboutus" className="btn btn-primary p-2">About Us</Link>
             <Link to="/alldevice" className="btn btn-primary p-2">Device</Link>
             <Link to="/entireAcademic" className="btn btn-primary p-2">Academic</Link>
-            <Link to="/programming" className="btn btn-primary p-2">Programming</Link>
+            <Link to="/professional" className="btn btn-primary p-2">Professional</Link>
             </div>
             
             
