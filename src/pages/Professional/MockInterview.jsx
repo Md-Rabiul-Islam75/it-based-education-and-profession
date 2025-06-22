@@ -28,9 +28,14 @@ const MockInterview = () => {
   }, [transcript]);
 
   const handleStart = () => {
-    resetTranscript();
-    SpeechRecognition.startListening({ continuous: false });
-  };
+  resetTranscript();
+  SpeechRecognition.startListening({ continuous: true });
+
+  // Auto-stop after 5 seconds
+  setTimeout(() => {
+    SpeechRecognition.stopListening();
+  }, 5000);
+};
 
   const handleStop = () => {
     SpeechRecognition.stopListening();
@@ -64,10 +69,10 @@ const MockInterview = () => {
   };
 
   return (
-    <div className="p-4 text-center">
-      <h2 className="text-xl font-bold">Mock Interview System</h2>
+    <div className="p-10 my-5 text-center">
+      <h2 className="text-2xl font-bold mb-2">Mock Interview System</h2>
 
-      <p className="text-gray-600 mb-4">{questionData.questionAskedByAI.replace(/"/g, '')}</p>
+      <p className="text-gray-600 font-semibold mb-4">{questionData.questionAskedByAI.replace(/"/g, '')}</p>
 
       <textarea
         className="textarea textarea-bordered w-full h-24 mb-2"

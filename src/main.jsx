@@ -28,6 +28,7 @@ import ProgrammingStartingPage from "./pages/Programming/ProgrammingStartingPage
 import Chatbot2 from "./Components/ChatBot/Chatbot2";
 import MockInterview from "./pages/Professional/MockInterview";
 import StartInterviewForm from "./pages/Professional/StartInterviewForm";
+import JobSite from "./pages/Professional/JobSite";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,11 @@ const router = createBrowserRouter([
       {
         path: "/mockInterview",
         element: <MockInterview></MockInterview>
+      },
+
+      {
+        path: "/jobSite",
+        element: <JobSite></JobSite>
       },
 
       {

@@ -6,9 +6,9 @@ import { Link } from "react-router";
 
 const ProgrammingStartingPage = () => {
   return (
-    <div className="flex gap-4 my-4 w-3/4 mx-auto">
+    <div className="grid grid-cols-1 w-3/4 mx-auto md:grid-cols-4 gap-4 my-4">
       <div>
-        <div className="card bg-base-100 image-full w-96  h-[580px] shadow-sm">
+        <div className="card bg-base-100 image-full w-65  h-[580px] shadow-sm">
           <figure>
             <img src={pic1} alt="Card" />
           </figure>
@@ -28,7 +28,7 @@ const ProgrammingStartingPage = () => {
       </div>
 
       <div>
-        <div className="card bg-base-100 image-full w-96 h-[580px] shadow-sm">
+        <div className="card bg-base-100 image-full w-78 h-[580px] shadow-sm">
           <figure>
             <img src={pic2} alt="Card" />
           </figure>
@@ -48,7 +48,7 @@ const ProgrammingStartingPage = () => {
       </div>
 
       <div>
-        <div className="card bg-base-100 image-full w-96 h-[580px] shadow-sm">
+        <div className="card bg-base-100 image-full w-78 h-[580px] shadow-sm">
           <figure>
             <img src={pic3} alt="Card" />
           </figure>
@@ -59,6 +59,23 @@ const ProgrammingStartingPage = () => {
             </p>
             <div className="card-actions justify-end">
               <Link to={"/mockInterviewForm"} className="btn btn-primary">Explore Now</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <div>
+        <div className="card bg-base-100 image-full w-78 h-[580px] shadow-sm">
+          <figure>
+            <img src={pic1} alt="Card" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Job Site</h2>
+            <p className="text-xs font-bold">
+              Mock Interview turns a normal person into a professional person.
+            </p>
+            <div className="card-actions justify-end">
+              <Link to={"/jobSite"} className="btn btn-primary">Explore Now</Link>
             </div>
           </div>
         </div>
