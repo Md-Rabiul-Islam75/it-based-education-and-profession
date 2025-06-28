@@ -21,7 +21,7 @@ const ProgrammingStartingPage = () => {
               be more motivational, poetic, or technical in tone?
             </p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Explore Now</button>
+              <Link to={"/problemSolvingPage"} className="btn btn-primary">Explore Now</Link>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@ const ProgrammingStartingPage = () => {
               be more motivational, poetic, or technical in tone?
             </p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Explore Now</button>
+              <Link to={"/competitiveProgrammingPage"} className="btn btn-primary">Explore Now</Link>
             </div>
           </div>
         </div>
