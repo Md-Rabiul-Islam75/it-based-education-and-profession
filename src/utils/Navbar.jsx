@@ -1,26 +1,54 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { DataContext } from "../providers/AuthProvider";
+import userIcon from "../assets/images/user.svg";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const location = useLocation();
+  const { user, setUser } = useContext(DataContext);
 
-  const Name = location.pathname === "/" ? (
-    // 1st: Shown only on Home page
-    <div>
-      <h3 className="font-bold text-xl text-white">
-        Computer Science and Engineering, MBSTU.
-      </h3>
-    </div>
-  ) : (
-    // 2nd: Shown on all other pages
-    <div className="flex gap-3 text-xs">
-      <Link to="/" className="btn btn-link text-white p-1">Home</Link>
-      <Link to="/aboutus" className="btn btn-link text-white p-1">About Us</Link>
-      <Link to="/alldevice" className="btn btn-link text-white p-1">Device</Link>
-      <Link to="/entireAcademic" className="btn btn-link text-white p-1">Academic</Link>
-      <Link to="/professional" className="btn btn-link text-white p-1">Professional</Link>
-    </div>
-  );
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        setUser(null);
+        console.log("Logout Successfull");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+
+  const Name =
+    location.pathname === "/" ? (
+      // 1st: Shown only on Home page
+      <div>
+        <h3 className="font-bold text-xl text-white">
+          Computer Science and Engineering, MBSTU.
+        </h3>
+      </div>
+    ) : (
+      // 2nd: Shown on all other pages
+      <div className="flex gap-3 text-xs">
+        <Link to="/" className="btn btn-link text-white p-1">
+          Home
+        </Link>
+        <Link to="/aboutus" className="btn btn-link text-white p-1">
+          About Us
+        </Link>
+        <Link to="/alldevice" className="btn btn-link text-white p-1">
+          Device
+        </Link>
+        <Link to="/entireAcademic" className="btn btn-link text-white p-1">
+          Academic
+        </Link>
+        <Link to="/professional" className="btn btn-link text-white p-1">
+          Professional
+        </Link>
+      </div>
+    );
 
   return (
     <div className="sticky top-0">
@@ -54,7 +82,10 @@ const Navbar = () => {
               {Name}
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost text-xl text-white no-underline">
+          <Link
+            to="/"
+            className="btn btn-ghost text-xl text-white no-underline"
+          >
             EduTech
           </Link>
         </div>
@@ -62,12 +93,34 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 text-white">{Name}</ul>
         </div>
         <div className="navbar-end space-x-4">
-          <Link to="/signUp" className="text-xl text-white font-bold no-underline hover:text-pink-500">
+          <div>
+            {user && user.email ? (
+              <div>
+                <img className="w-10 rounded-full" src={user.photoURL} alt="" />
+              </div>
+            ) : (
+              <img className="w-10 rounded-full" src={userIcon} alt="" />
+            )}
+            {/* <img className="w-10 rounded-full" src={userIcon} alt="" /> */}
+          </div>
+
+          <Link
+            to="/signUp"
+            className="text-xl text-white font-bold no-underline hover:text-pink-500"
+          >
             SignUp
           </Link>
-          <Link to="/login" className="text-xl text-white font-bold no-underline hover:text-pink-500">
-            Login
-          </Link>
+          <div>
+            {user && user?.email ? (
+              <button onClick={handleLogout}  className="text-xl text-white font-bold no-underline hover:text-pink-500">
+                LogOut
+              </button>
+            ) : (
+              <Link to="/login"  className="text-xl text-white font-bold no-underline hover:text-pink-500">
+                Login
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>

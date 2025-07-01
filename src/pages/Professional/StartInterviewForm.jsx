@@ -35,9 +35,14 @@ const StartInterviewForm = () => {
   };
 
   return (
-    <div className="flex gap-5 p-10 bg-pink-200">
-        <img src={interview} className="w-1/2" alt="" />
-      <form onSubmit={handleStart} className="p-4 bg-white shadow rounded">
+    <div className="flex gap-5 items-center w-9/12 h-[500px] mx-auto p-10 my-5 bg-pink-200 rounded-lg">
+        <div className="text-center p-10 w-1/2 lg:text-left">
+          <h1 className="text-5xl font-bold">Start Interview Now!</h1>
+          <p className="py-6">
+            Sign Up and build your career like the professional. We are here to support you and always be with you. Keep faith in yourself. All the best. 
+          </p>
+        </div>
+      <form onSubmit={handleStart} className="p-10 bg-white shadow rounded">
         <h2 className="text-xl font-bold mb-4">Start Mock Interview</h2>
 
         <input

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import login_bg_pic from "../assets/login_bg.avif";
-import { AuthContext } from "../providers/AuthProvider";
+import { DataContext } from "../providers/AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider } from "firebase/auth";
 import { getAuth, signInWithPopup } from "firebase/auth";
@@ -10,6 +10,8 @@ import { getAuth, signInWithPopup } from "firebase/auth";
 //import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+
+   const { signInUser, setUser } = useContext(DataContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,7 +26,7 @@ const Login = () => {
     });
   };
 
-  const { signInUser } = useContext(AuthContext);
+ 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -37,8 +39,8 @@ const Login = () => {
 
     signInUser(email, password)
       .then((result) => {
-        console.log(result);
         console.log(result.user);
+         setUser(result.user)
         alert("Logged in Successfull.");
         //navigate('/');
         navigate('/');

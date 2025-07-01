@@ -5,9 +5,9 @@ import login_bg_pic from "../assets/login_bg.avif";
 //import { toast, ToastContainer } from "react-toastify";
 //import "react-toastify/dist/ReactToastify.css"; // Make sure to import the toastify styles
 import { registerUser } from "../service/RegisterUserApi";
-import { AuthContext } from "../providers/AuthProvider";
+import { DataContext } from "../providers/AuthProvider";
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { user, setUser, createUser, updateUser } = useContext(DataContext);
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -43,12 +43,34 @@ const SignUp = () => {
     // signUp firebase process
     const email = e.target.email.value;
     const password = e.target.password.value;
+      const name = e.target.name.value;
+        const photo = e.target.photo.value;
+
+
 
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
         alert("SignUp Succesffull.");
-      })
+
+
+          const profile = {
+            displayName : name,
+            photoURL : photo
+         }
+
+           updateUser(profile)
+         //updateProfile(auth.currentUser, profile)
+         .then(() =>{
+          console.log('user profile updated')
+          console.log(user.displayName);
+          console.log(user);
+          //setUser(user);
+          
+         })
+         .catch(error => console.log('User profile update error'));
+
+         }) 
       .catch((error) => {
         console.log("error", error);
       });
@@ -90,6 +112,21 @@ const SignUp = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="name"
+                    className="input input-bordered w-[350px]"
+                    required
+                  />
+                </div>
+
+                 <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Photo URL</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="photo"
+                    value={formData.photo}
+                    onChange={handleChange}
+                    placeholder="Photo Url"
                     className="input input-bordered w-[350px]"
                     required
                   />

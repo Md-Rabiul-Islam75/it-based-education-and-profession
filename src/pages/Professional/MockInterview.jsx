@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -12,6 +12,9 @@ const MockInterview = () => {
   const [questionData, setQuestionData] = useState(interviewData);
   const [userAnswer, setUserAnswer] = useState("");
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [pauseTimeout, setPauseTimeout] = useState(null);
+  const [lastSpokenTime, setLastSpokenTime] = useState(null);
+  const videoRef = useRef(null);
 
   const {
     transcript,
@@ -20,23 +23,63 @@ const MockInterview = () => {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
+  // Start webcam
+  useEffect(() => {
+    const startCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (error) {
+        console.error("Camera access denied or error:", error);
+      }
+    };
+
+    startCamera();
+
+    return () => {
+      if (videoRef.current?.srcObject) {
+        videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, []);
+
+  // Check browser support
   useEffect(() => {
     if (!browserSupportsSpeechRecognition) {
       alert("Speech recognition not supported.");
     }
   }, []);
 
+  // Track speech and pause
   useEffect(() => {
     setUserAnswer(transcript);
+
+    if (transcript.trim()) {
+      setLastSpokenTime(Date.now());
+    }
+
+    if (pauseTimeout) clearTimeout(pauseTimeout);
+
+    const timeout = setTimeout(() => {
+      if (
+        transcript.trim() &&
+        lastSpokenTime &&
+        Date.now() - lastSpokenTime >= 10000
+      ) {
+        handleSubmit();
+      }
+    }, 10100);
+
+    setPauseTimeout(timeout);
   }, [transcript]);
 
   const handleStart = () => {
     resetTranscript();
     SpeechRecognition.startListening({ continuous: true });
-
-    setTimeout(() => {
-      SpeechRecognition.stopListening();
-    }, 5000);
   };
 
   const handleStop = () => {
@@ -45,6 +88,8 @@ const MockInterview = () => {
 
   const handleSubmit = async () => {
     try {
+      if (!userAnswer.trim()) return;
+
       const res = await axios.post(
         "http://localhost:8082/api/interview/useranswer",
         {
@@ -60,6 +105,7 @@ const MockInterview = () => {
       setQuestionData(nextQuestion);
       resetTranscript();
       setUserAnswer("");
+      setLastSpokenTime(null);
       speakOut(nextQuestion.questionAskedByAI.replace(/"/g, ""));
     } catch (err) {
       console.error("API Error:", err);
@@ -74,59 +120,89 @@ const MockInterview = () => {
   };
 
   return (
-    <div className="p-10 my-5 text-center">
-      <h2 className="text-2xl font-bold mb-6">Mock Interview System</h2>
+    <>
+      {/* Camera Preview */}
+      {/* <div className="fixed top-5 right-2 w-48 h-36 border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg bg-black z-50">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          className="w-full h-full object-cover"
+        />
+      </div> */}
 
-      <div className="flex gap-10 w-11/12 mx-auto">
-        {/* Left side - AI */}
-        <div className="w-1/2 border rounded-xl p-4 bg-blue-50 shadow">
-          <h3 className="text-lg font-semibold text-left mb-2">AI Question:</h3>
-          <p className="text-gray-700 text-left mb-4">
-            {questionData.questionAskedByAI.replace(/"/g, "")}
-          </p>
-          {isSpeaking && (
-            <div className="text-center">
-              <div className="ai-animation"></div>
-              <p className="mt-2 text-sm text-blue-600 font-medium">
-                AI is speaking...
-              </p>
+      {/* Main Interface */}
+      <div className="p-4 my-1 text-center">
+        <h2 className="text-2xl font-bold mb-6">Mock Interview System</h2>
+
+        <div className="flex gap-10 w-11/12 mx-auto">
+          {/* AI Section */}
+          <div className="w-1/2 border rounded-xl p-4 bg-blue-50 shadow">
+            <h3 className="text-lg font-semibold text-left mb-2">
+              AI Question:
+            </h3>
+            <p className="text-gray-700 text-left mb-4">
+              {questionData?.questionAskedByAI?.replace(/"/g, "")}
+            </p>
+            {isSpeaking && (
+              <div className="text-center">
+                <div className="ai-animation"></div>
+                <p className="mt-2 text-sm text-blue-600 font-medium">
+                  AI is speaking...
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* User Section */}
+          <div className="w-1/2 border rounded-xl p-4 bg-green-50 shadow">
+            <h3 className="text-lg font-semibold text-left mb-2">
+              Your Answer:
+            </h3>
+
+            {/* Camera Preview inside user section */}
+            {/* Camera Preview inside user section */}
+            {/* Camera Preview inside user section */}
+            {/* Camera Preview inside user section */}
+            <div className="mt-4 w-full h-130 border-2 border-gray-300 rounded-lg overflow-hidden shadow bg-black">
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                className="w-full h-full object-cover"
+              />
             </div>
-          )}
-        </div>
 
-        {/* Right side - User */}
-        <div className="w-1/2 border rounded-xl p-4 bg-green-50 shadow">
-          <h3 className="text-lg font-semibold text-left mb-2">Your Answer:</h3>
-          <textarea
-            className="textarea textarea-bordered w-full h-24 mb-4"
-            placeholder="Speak or type your answer..."
-            value={userAnswer}
-            onChange={(e) => setUserAnswer(e.target.value)}
-          ></textarea>
+            <textarea
+              className="textarea textarea-bordered w-full h-24 mb-4"
+              placeholder="Speak or type your answer..."
+              value={userAnswer}
+              onChange={(e) => setUserAnswer(e.target.value)}
+            ></textarea>
 
-          {listening && (
-            <div className="text-center mb-4">
-              <div className="voice-animation"></div>
-              <p className="mt-2 text-sm text-green-600 font-medium">
-                You’re speaking...
-              </p>
+            {listening && !isSpeaking && (
+              <div className="text-center mb-4">
+                <div className="voice-animation"></div>
+                <p className="mt-2 text-sm text-green-600 font-medium">
+                  You're speaking...
+                </p>
+              </div>
+            )}
+            <div>
+              <button onClick={handleStart} className="btn btn-success mr-2">
+                🎙️ Speak
+              </button>
+              <button onClick={handleStop} className="btn btn-warning mr-2">
+                🛑 Stop
+              </button>
+              <button onClick={handleSubmit} className="btn btn-primary">
+                Submit Answer
+              </button>
             </div>
-          )}
-
-          <div>
-            <button onClick={handleStart} className="btn btn-success mr-2">
-              🎙️ Speak
-            </button>
-            <button onClick={handleStop} className="btn btn-warning mr-2">
-              🛑 Stop
-            </button>
-            <button onClick={handleSubmit} className="btn btn-primary">
-              Submit Answer
-            </button>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
