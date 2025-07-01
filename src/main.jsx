@@ -32,6 +32,11 @@ import JobSite from "./pages/Professional/JobSite";
 import ProblemSolvingPage from "./pages/Professional/ProblemSolvingPage";
 import CompetitiveProgrammingPage from "./pages/Professional/CompetitiveProgrammingPage/CompetitiveProgrammingPage";
 import TopicDetails from "./pages/Professional/CompetitiveProgrammingPage/TopicDetails"
+import ResumeBuilder from "./pages/Professional/ResumeBuilder";
+import ResumeForm from "./pages/Professional/ResumeBuilder";
+import ResumePreview from "./pages/Professional/ResumePreview";
+import PorblemSolvingDetails from "./pages/Professional/PorblemSolvingDetails";
+
 
 const router = createBrowserRouter([
   {
@@ -91,6 +96,18 @@ const router = createBrowserRouter([
       {
         path: "/jobSite",
         element: <JobSite></JobSite>,
+      },
+       {
+        path: "/resumeBuilder",
+        element: <ResumeBuilder></ResumeBuilder>
+      },
+      {
+        path: "/preview",
+        element: <ResumePreview></ResumePreview>
+      },
+      {
+        path: "/problem_solving",
+        element: <PorblemSolvingDetails></PorblemSolvingDetails>
       },
 
       {

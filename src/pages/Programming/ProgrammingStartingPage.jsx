@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 const ProgrammingStartingPage = () => {
   return (
-    <div className="grid grid-cols-1 w-3/4 mx-auto md:grid-cols-4 gap-4 my-4">
+    <div className="grid grid-cols-1 w-3/4 mx-auto md:grid-cols-5 gap-4 my-4">
       <div>
         <div className="card bg-base-100 image-full w-65  h-[580px] shadow-sm">
           <figure>
@@ -21,7 +21,7 @@ const ProgrammingStartingPage = () => {
               be more motivational, poetic, or technical in tone?
             </p>
             <div className="card-actions justify-end">
-              <Link to={"/problemSolvingPage"} className="btn btn-primary">Explore Now</Link>
+              <Link to={"/problemSolvingPage"} state={{category:"Problem_Solving"}} className="btn btn-primary">Explore Now</Link>
             </div>
           </div>
         </div>
@@ -80,6 +80,24 @@ const ProgrammingStartingPage = () => {
           </div>
         </div>
       </div>
+
+      <div>
+        <div className="card bg-base-100 image-full w-78 h-[580px] shadow-sm">
+          <figure>
+            <img src={pic2} alt="Card" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Make Your Rusume</h2>
+            <p className="text-xs font-bold">
+              
+            </p>
+            <div className="card-actions justify-end">
+              <Link to={"/resumeBuilder"} className="btn btn-primary">Explore Now</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     </div>
   );
