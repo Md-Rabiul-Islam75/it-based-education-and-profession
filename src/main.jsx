@@ -35,7 +35,7 @@ import TopicDetails from "./pages/Professional/CompetitiveProgrammingPage/TopicD
 import ResumeBuilder from "./pages/Professional/ResumeBuilder";
 import ResumeForm from "./pages/Professional/ResumeBuilder";
 import ResumePreview from "./pages/Professional/ResumePreview";
-import PorblemSolvingDetails from "./pages/Professional/PorblemSolvingDetails";
+
 
 
 const router = createBrowserRouter([
@@ -105,10 +105,10 @@ const router = createBrowserRouter([
         path: "/preview",
         element: <ResumePreview></ResumePreview>
       },
-      {
-        path: "/problem_solving",
-        element: <PorblemSolvingDetails></PorblemSolvingDetails>
-      },
+      // {
+      //   path: "/problem_solving",
+      //   element: <PorblemSolvingDetails></PorblemSolvingDetails>
+      // },
 
       {
         path: "/allCtQuestionPage",

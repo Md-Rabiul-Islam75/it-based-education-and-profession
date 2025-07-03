@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { TopicService } from "../../service/topicService";
+import TopicDetailsComponent from "../../Components/TopicDetails/TopicDetailsComponent";
 
 const ProblemSolvingPage = () => {
   const [activeSection, setActiveSection] = useState("firstYear");
@@ -11,6 +12,12 @@ const ProblemSolvingPage = () => {
 
   const location = useLocation();
   const category = location.state?.category;
+
+
+  useEffect(() =>{
+    
+
+  }, []);
 
   const [formData, setFormData] = useState({
     topicName: "",
@@ -43,10 +50,10 @@ const ProblemSolvingPage = () => {
   const handleTopicClick = async (topicId) => {
     try {
       const res = await TopicService.getTopicById(topicId);
-      
+
       setSelectedTopicDetails(res);
-     
-      console.log("Get By topic Id res =",res);
+
+      console.log("Get By topic Id res =", res);
     } catch (err) {
       console.error("Error fetching topic details:", err);
     }
@@ -79,6 +86,35 @@ const ProblemSolvingPage = () => {
       console.error("Failed to add topic:", error);
     }
   };
+
+  useEffect(() => {
+  const init = async () => {
+    const defaultYear = "firstYear";
+    setActiveSection(defaultYear);
+    setExpandedYear(defaultYear);
+
+    try {
+      const res = await TopicService.getTopicsByYear(defaultYear, category);
+      setTopicsByYear((prev) => ({
+        ...prev,
+        [defaultYear]: res,
+      }));
+
+      if (res.length > 0) {
+        const firstTopic = res[0];
+        const topicDetails = await TopicService.getTopicById(firstTopic.id);
+        setSelectedTopicDetails(topicDetails);
+      }
+    } catch (err) {
+      console.error("Error during initial topic fetch:", err);
+    }
+  };
+
+  if (category) {
+    init();
+  }
+}, [category]);
+
 
   return (
     <div className="flex flex-col lg:flex-row p-4">
@@ -127,76 +163,11 @@ const ProblemSolvingPage = () => {
       </div>
 
       {/* Right Side */}
-<div className="lg:w-3/4 mt-4 lg:mt-0 lg:pl-4">
-
-  {selectedTopicDetails ? (
-   
-    <div className="p-6 border rounded-lg shadow-lg bg-white space-y-6">
-      {/* Topic Header */}
-      <div>
-       
-        <h2 className="text-3xl font-bold text-indigo-700 mb-2">
-          {selectedTopicDetails.topicName}
-        </h2>
-        <p className="text-gray-600 text-lg">{selectedTopicDetails.topicDescribtion}</p>
-      </div>
-
-      {/* Problem List */}
-      <div>
-        <h3 className="text-2xl font-semibold text-blue-600 mb-3">Problem List</h3>
-        {selectedTopicDetails.problems.length > 0 ? (
-          <div className="grid md:grid-cols-2 gap-4">
-            {selectedTopicDetails.problems.map((problem) => (
-              <div key={problem.id} className="p-4 border rounded-lg bg-gray-50 shadow-sm hover:shadow-md transition">
-                <a
-                  href={problem.problemLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg font-semibold text-blue-700 hover:underline"
-                >
-                  {problem.problemName}
-                </a>
-                <p className="text-sm text-gray-600">
-                  Difficulty: <span className="font-medium">{problem.difficultyLevel}</span>
-                </p>
-                <p className="text-sm text-gray-500">Platform: {problem.platform}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-500">No problems available.</p>
+      <div className="lg:w-3/4 mt-4 lg:mt-0 lg:pl-4">
+        {selectedTopicDetails && (
+          <TopicDetailsComponent topicData={selectedTopicDetails} />
         )}
       </div>
-
-      {/* Contest List */}
-      <div>
-        <h3 className="text-2xl font-semibold text-green-600 mb-3">Contest List</h3>
-        {selectedTopicDetails.contests.length > 0 ? (
-          <div className="grid md:grid-cols-2 gap-4">
-            {selectedTopicDetails.contests.map((contest) => (
-              <div key={contest.id} className="p-4 border rounded-lg bg-gray-50 shadow-sm hover:shadow-md transition">
-                <a
-                  href={contest.contestLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg font-semibold text-green-700 hover:underline"
-                >
-                  {contest.contestName}
-                </a>
-                <p className="text-sm text-gray-500">Platform: {contest.platform}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-500">No contests available.</p>
-        )}
-      </div>
-    </div>
-  ) : (
-    <p className="text-gray-500">Select a topic to view details.</p>
-  )}
-</div>
-
 
       {/* Modal */}
       {showModal && (

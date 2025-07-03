@@ -15,6 +15,6 @@ export const TopicService = {
 
     getTopicById :(topicId)=>
       axios.get(`${API_BASE}/gettopicbyid?TopicId=${topicId}`).then((res) => {
-        return res.data.responseData.Topic;
+        return res.data.responseData?.Topic?.[0];
       }),
 };
