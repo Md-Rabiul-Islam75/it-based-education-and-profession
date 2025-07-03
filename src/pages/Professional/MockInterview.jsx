@@ -5,6 +5,10 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import axios from "axios";
 import "./style.css";
+import Interviewer from "../../assets/images/InterViewer.mp4";
+import CalmInterviewer from "../../assets/images/Calm_Interviewer.png";
+import CalmInterviewer2 from "../../assets/images/InterViewer2.jpg";
+
 
 const MockInterview = () => {
   const { state } = useLocation();
@@ -68,11 +72,11 @@ const MockInterview = () => {
       if (
         transcript.trim() &&
         lastSpokenTime &&
-        Date.now() - lastSpokenTime >= 10000
+        Date.now() - lastSpokenTime >= 5000
       ) {
         handleSubmit();
       }
-    }, 10100);
+    }, 5100);
 
     setPauseTimeout(timeout);
   }, [transcript]);
@@ -139,19 +143,42 @@ const MockInterview = () => {
           {/* AI Section */}
           <div className="w-1/2 border rounded-xl p-4 bg-blue-50 shadow">
             <h3 className="text-lg font-semibold text-left mb-2">
-              AI Question:
+              Interviewer (AI)
             </h3>
-            <p className="text-gray-700 text-left mb-4">
-              {questionData?.questionAskedByAI?.replace(/"/g, "")}
-            </p>
-            {isSpeaking && (
-              <div className="text-center">
+
+            {/* AI Visual (video or image) */}
+            <div className="mt-4 w-full h-80 border-2 border-gray-300 rounded-lg overflow-hidden shadow bg-black flex items-center justify-center">
+              {isSpeaking ? (
+                <video
+                  src={Interviewer}
+                  autoPlay
+                  loop
+                  muted
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={CalmInterviewer2}
+                  alt="Calm Interviewer"
+                  className="w-full h-full object-contain"
+                />
+              )}
+            </div>
+
+            {/* Status message */}
+            {/* {isSpeaking && (
+              <div className="text-center mt-2">
                 <div className="ai-animation"></div>
                 <p className="mt-2 text-sm text-blue-600 font-medium">
                   AI is speaking...
                 </p>
               </div>
-            )}
+            )} */}
+
+            {/* Question text */}
+            <p className="text-gray-700 text-left mt-4 text-base font-medium">
+              {questionData?.questionAskedByAI?.replace(/"/g, "")}
+            </p>
           </div>
 
           {/* User Section */}

@@ -164,7 +164,7 @@ const AcademicPage = () => {
       {Array.isArray(subjects) && subjects.length === 0 ? (
         <p className="text-center text-gray-500">No subjects found.</p>
       ) : (
-        <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-4 space-x-2 space-y-2">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 space-x-2 space-y-2">
           {Array.isArray(subjects) &&
             subjects.map((course) => (
               <SingleAcademicPage key={course.id} course={course} />
@@ -177,7 +177,7 @@ const AcademicPage = () => {
           onClick={openInputModal}
           className="bg-blue-500 text-white px-5 py-3 rounded hover:bg-blue-600"
         >
-          Click to Add Lab Manual
+          Click to Add Course
         </button>
       </div>
 

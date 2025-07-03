@@ -37,6 +37,7 @@ const TopicSidebar = () => {
     try {
       const res = await axios.get(
         `http://localhost:8082/api/topic/getalltopic?FeatureName=${competitiveProgramming}`
+       
       );
       //const data = res.data.responseData;
       const data = res.data.responseData?.TopicList;

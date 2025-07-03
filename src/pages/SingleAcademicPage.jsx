@@ -1,23 +1,39 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const SingleAcademicPage = ({ course }) => {
-  const { subjectName, imageLink, id } = course;
+  const { subjectName, imageLink } = course;
 
-  const hanldeCourseName = (subjectName) => {
-        console.log(subjectName);
-  }
+  const handleCourseName = (subjectName) => {
+    console.log(subjectName);
+  };
 
   return (
-    <Link onClick={() =>hanldeCourseName(subjectName)}  to={`/academic/course/${subjectName}`} className="card bg-base-200 hover:bg-purple-300 rounded-2xl w-85 shadow-xl my-2">
-      <figure>
-        <img src={imageLink} alt="" className="w-70 h-[160px] py-3" />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title font-bold">{subjectName}</h2>
-        
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Click to See</button>
+    <Link
+      to={`/academic/course/${subjectName}`}
+      onClick={() => handleCourseName(subjectName)}
+      className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl shadow-md
+                 hover:shadow-xl hover:-translate-y-1 transform transition duration-300
+                 flex flex-col"
+    >
+      <div className="h-48 overflow-hidden rounded-t-xl">
+        <img
+          src={imageLink}
+          alt={subjectName}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+      <div className="p-5 flex flex-col justify-between flex-grow">
+        <h2 className="text-xl font-semibold text-indigo-700 mb-4 text-center">
+          {subjectName}
+        </h2>
+        <div className="mt-auto text-center">
+          <button
+            className="bg-indigo-600 text-white px-4 py-2 rounded-md font-medium 
+                       hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Click to See
+          </button>
         </div>
       </div>
     </Link>
